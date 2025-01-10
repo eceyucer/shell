@@ -9,8 +9,10 @@ set -x
 # project name and a brief description of the project.
 # Then it unzips the raw data provided by the client.
 
-mkdir analysis output
+mkdir "analysis output"
 touch README.md
+echo "# Project Name: DSI Consulting Inc." > README.md
+mkdir analysis
 touch analysis/main.py
 
 # download client data
@@ -21,21 +23,25 @@ unzip rawdata.zip
 # Complete assignment here
 
 # 1. Create a directory named data
-
+mkdir data
 # 2. Move the ./rawdata directory to ./data/raw
-
+mv ./rawdata ./data/raw
 # 3. List the contents of the ./data/raw directory
-
+ls ./data/raw
 # 4. In ./data/processed, create the following directories: server_logs, user_logs, and event_logs
-
+mkdir ./data/processed # create a subfolder ./data/processed
+DIRECTORY_LIST=("./data/processed/server_logs" "./data/processed/user_logs" "./data/processed/event_logs") # create a list of directories to be created
+mkdir "${DIRECTORY_LIST[@]}" # make the directory
 # 5. Copy all server log files (files with "server" in the name AND a .log extension) from ./data/raw to ./data/processed/server_logs
-
-# 6. Repeat the above step for user logs and event logs
-
+cp ./data/raw/server*.log ./data/processed/server_logs # copy all server logs
+# 6. Repeat the above step for user logs and event logs 
+cp ./data/raw/user*.log ./data/processed/user_logs # copy all user logs
+cp ./data/raw/event*.log ./data/processed/event_logs # copy all event logs
 # 7. For user privacy, remove all files containing IP addresses (files with "ipaddr" in the filename) from ./data/raw and ./data/processed/user_logs
-
+rm ./data/raw/*ipaddr* # remove all files with ipaddr in name from raw data
+rm ./data/processed/user_logs/*ipaddr* # remove all files with ipaddr in name from user_logs
 # 8. Create a file named ./data/inventory.txt that lists all the files in the subfolders of ./data/processed
-
+ls ./data/processed/* > ./data/inventory.txt # summarize the processed files
 
 
 ###########################################
