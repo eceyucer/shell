@@ -11,7 +11,7 @@ set -x
 
 mkdir "analysis output"
 touch README.md
-mkdir analysis
+echo "# Project Name: DSI Consulting Inc." > README.md
 touch analysis/main.py
 
 # download client data
